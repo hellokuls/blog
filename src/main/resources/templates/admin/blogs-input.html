@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>写博客</title>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/lib/editormd/css/editormd.min.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+<div class="admin-content-container padded-nomal ">
+
+    <!--    <div class="ui container">-->
+    <form id="blog-form" th:object="${blog}"
+          th:action="*{id}==null ? @{/admin/blogs/save/} : @{/admin/updateBlogs/}" method="POST"
+          class="ui form">
+        <input type="hidden" name="published">
+        <input type="hidden" name="id" th:value="*{id}">
+        <div class="required field">
+            <div class="ui left  labeled input">
+
+                <select class="ui selection blue basic compact dropdown label" name="flag"
+                        th:value="*{flag}">
+
+                    <option value="原创">原创</option>
+                    <option value="转载">转载</option>
+                </select>
+                <input type="text" name="title" placeholder="标题" th:value="*{title}">
+            </div>
+
+        </div>
+
+        <div class="required field">
+            <!-- z-index表示层级关系 -->
+            <div id="md-content" style="z-index: 1 !important;">
+                            <textarea placeholder="博客内容" name="content" style="display: none"
+                                      th:text="*{content}"></textarea>
+            </div>
+        </div>
+
+        <div class="required field">
+            <div class="ui left labeled input">
+                <label class="ui blue basic label">图片</label>
+                <input type="text" name="firstPicture" placeholder="图片地址" th:value="*{firstPicture}">
+            </div>
+
+        </div>
+
+        <div class="required field">
+                        <textarea name="description" th:text="*{description}" placeholder="博客描述..."
+                                  maxlength="200"></textarea>
+        </div>
+
+        <div class="two fields">
+            <div class="required field">
+                <div class="ui left labeled action input">
+                    <label class="ui blue basic compact label">分类</label>
+                    <div class="ui selection  dropdown label">
+                        <input type="hidden" name="type.id" th:value="*{type}!=null ? *{type.id}:''">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">分类</div>
+                        <div class="menu">
+                            <div th:each="type : ${types}" th:text="${type.name}" class="item"
+                                 th:data-value="${type.id}">Java
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="required field">
+                <div class="ui left labeled action input">
+                    <label class="ui blue basic compact label">标签</label>
+                    <div class="ui selection multiple search dropdown">
+                        <input type="hidden" name="tagIds" th:value="*{tagIds}">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">标签</div>
+                        <div class="menu">
+                            <div th:each="tag : ${tags}" th:text="${tag.name}" class="item"
+                                 th:data-value="${tag.id}">Java
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="inline fields">
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="recommend" id="recommend" th:checked="*{recommend}">
+                    <label for="recommend">推荐</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="shareStatement" id="shareStatement"
+                           th:checked="*{shareStatement}">
+                    <label for="shareStatement">转载声明</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="appreciation" id="appreciation"
+                           th:checked="*{appreciation}">
+                    <label for="appreciation">赞赏</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="commentabled" id="commentabled"
+                           th:checked="*{commentabled}">
+                    <label for="commentabled">评论</label>
+                </div>
+            </div>
+        </div>
+        <div class="ui error message"></div>
+        <div class="ui right aligned container">
+            <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
+            <button type="button" id="save-btn" class="ui secondary button">保存</button>
+            <button type="button" id="publish-btn" class="ui button">发布</button>
+
+        </div>
+    </form>
+
+</div>
+<!--</div>-->
+
+
+</body>
+
+
+<!-- 页面jQuery.js的引用位置问题,如果导入了其它与jquery有关的js文件,那么jquery.js须在其它js的前面 -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script th:src="@{/js/semantic.min.js}"></script>
+<script th:src="@{/lib/editormd/editormd.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script>
+
+    //初始化Markdown编辑器
+    var contentEditor;
+    $(function () {
+        contentEditor = editormd("md-content", {
+            width: "100%",
+            height: 640,
+            syncScrolling: "single",
+            path: "/lib/editormd/lib/",
+            emoji: true,
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "/admin/uploadfile"
+        });
+    });
+
+
+    $("#menu-btn").click(function () {
+        $(".menu-item").toggleClass("mobile-hide")
+    });
+
+    //下拉菜单
+    $('#dropdownmenu').dropdown({
+        on: 'hover'
+    });
+
+    //类型选择    
+    $('.ui.selection.dropdown')
+        .dropdown({
+            maxSelections: 3
+        })
+    ;
+
+    $('#save-btn').click(function () {
+        $('[name="published"]').val(false);
+        $('#blog-form').submit();
+
+    });
+    $('#publish-btn').click(function () {
+        $('[name="published"]').val(true);
+        $('#blog-form').submit();
+
+    });
+
+    $('.ui.form').form({
+        fields: {
+            title: {
+                identifier: 'title',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标题：请输入博客标题'
+                }]
+            },
+            content: {
+                identifier: 'content',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标题：请输入博客内容'
+                }]
+            },
+            typeId: {
+                identifier: 'type.id',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标题：请输入博客分类'
+                }]
+            },
+            firstPicture: {
+                identifier: 'firstPicture',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标题：请输入博客首图'
+                }]
+            },
+            description: {
+                identifier: 'description',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标题：请输入博客描述'
+                }]
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

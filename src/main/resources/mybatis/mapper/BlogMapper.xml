@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kuls.mapper.BlogMapper">
+
+    <!--根据id获取文章-->
+    <select id="getBlogByID" parameterType="long" resultMap="BlogMap">
+        select id,title,content,first_picture,likes,
+        flag,view,description,appreciation,share_statement,commentabled,published,
+        recommend, create_time ,update_time
+         ,type_id from t_blog where id=#{id};
+    </select>
+
+    <!--给前端页面显示的博客文章:已发布的-->
+    <select id="listBlogOnFront" resultMap="BlogMap">
+        select id,title,content,first_picture,likes,
+        flag,view,description,appreciation,share_statement,commentabled,published,
+        recommend, create_time ,update_time
+        ,type_id from t_blog
+        <where>
+            and published = true
+            <if test="title != null and title != ''">
+                and title like concat('%',#{title},'%')
+            </if>
+
+            <if test="recommend != null and recommend != ''">
+                and recommend = #{recommend}
+            </if>
+
+            <if test="typeId != null and typeId != ''">
+                and type_id = #{typeId}
+            </if>
+
+        </where>
+        order by update_time DESC
+    </select>
+
+    <!--给前端页面显示的博客文章:热门的前五-->
+    <select id="listBlogOnFrontHot" resultMap="BlogMap">
+        select id,title,content,first_picture,likes,
+        flag,view,description,appreciation,share_statement,commentabled,published,
+        recommend, create_time ,update_time
+        ,type_id from t_blog
+        <where>
+            and published = true
+        </where>
+        order by view DESC limit 0,5
+    </select>
+
+
+    <!--后台获取博客信息-->
+    <select id="listBlog" resultMap="BlogMap">
+        select id,title,content,first_picture,likes,
+        flag,view,description,appreciation,share_statement,commentabled,published,
+        recommend, create_time ,update_time
+        ,type_id from t_blog
+        <where>
+
+
+            <if test="title != null and title != ''">
+                and title like concat('%',#{title},'%')
+            </if>
+
+            <if test="recommend != null and recommend != ''">
+                and recommend = #{recommend}
+            </if>
+
+            <if test="typeId != null and typeId != ''">
+                and type_id = #{typeId}
+            </if>
+
+        </where>
+        order by update_time DESC
+    </select>
+
+    <select id="getType" resultType="Type">
+        select * from t_type where id=#{id};
+    </select>
+    <select id="getUser" resultType="User">
+        select * from t_user where id=#{id};
+    </select>
+
+    <resultMap id="BlogMap" type="Blog">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="flag" column="flag"/>
+        <result property="view" column="view"/>
+        <result property="appreciation" column="appreciation"/>
+        <result property="shareStatement" column="share_statement"/>
+        <result property="commentabled" column="commentabled"/>
+        <result property="published" column="published"/>
+        <result property="recommend" column="recommend"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="description" column="description"/>
+        <result property="likes" column="likes"/>
+
+
+        <association property="type" column="type_id" javaType="Type" select="getType">
+            <result property="name" column="tname"/>
+        </association>
+
+    </resultMap>
+
+
+    <!--useGeneratedKeys="true" keyProperty="id" 这两个属性会返回id主键的值-->
+    <insert id="save" parameterType="Blog" useGeneratedKeys="true" keyProperty="id">
+        insert into t_blog(id,title,content,first_picture,likes,
+        flag,view,description,appreciation,share_statement,commentabled,published,
+        recommend,create_time,update_time,type_id,user_id) values (#{id},
+        #{title},#{content},#{firstPicture},#{likes},#{flag},#{view},#{description},#{appreciation},#{shareStatement},
+        #{commentabled},#{published},#{recommend},#{createTime},#{updateTime},#{type.id},#{user.id}
+        );
+    </insert>
+
+    <update id="incView" parameterType="Blog">
+        update t_blog set
+        view = view + 1
+        where id =#{id}
+    </update>
+
+    <update id="incLikes" parameterType="Blog">
+        update t_blog set
+        likes = likes + #{likes}
+        where id =#{id}
+    </update>
+
+    <update id="updateBlog" parameterType="Blog" useGeneratedKeys="true" keyProperty="id">
+        update t_blog set title = #{title},content = #{content},first_picture=#{firstPicture},description=#{description},
+        flag = #{flag},view = #{view},appreciation=#{appreciation},share_statement=#{shareStatement},
+        commentabled=#{commentabled},published=#{published},recommend=#{recommend},create_time=#{createTime},
+        update_time=#{updateTime},type_id=#{type.id},user_id=#{user.id} where id = #{id};
+    </update>
+
+    <delete id="deleteBlog" parameterType="long">
+        delete from t_blog where id=#{id}
+    </delete>
+</mapper>

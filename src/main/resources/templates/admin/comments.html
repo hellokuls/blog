@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>评论管理</title>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+
+</head>
+
+<body>
+<div>
+
+
+    <div class="admin-content-container padded-nomal ">
+
+        <div class="ui container">
+
+
+            <div class="ui segment form">
+
+
+                <div id="table-container">
+                    <table class="ui table">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>评论</th>
+                            <th>邮箱</th>
+                            <th>姓名</th>
+                            <th>对应博客</th>
+                            <th>评论时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="comment,iterStat : ${comments.list}">
+                            <td th:text="${iterStat.count}">1</td>
+                            <td th:text="${comment.content}">菜菜的kuls</td>
+                            <td th:text="${comment.email}"></td>
+                            <td th:text="${comment.nickname}">个人成长</td>
+                            <td><a th:href="@{/blog/{id}(id=${comment.blog.id})}"
+                                   th:text="${comment.blog.title}" target="_blank"></a></td>
+                            <td th:text="${#dates.format(comment.createTime, 'yyyy-MM-dd')}">2020-04-25</td>
+                            <td>
+                                <a th:href="@{/admin/comment/{id}/delete(id=${comment.id})}"
+                                   class="ui mini red button">删除</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="8">
+                                <div class="ui mini right floated pagination menu"
+                                     th:unless="${comments.pages}==1">
+                                    <a th:href="@{/admin/comment/(pageNum=${comments.pageNum}-1)}"
+                                       th:unless="${comments.isFirstPage}" class="icon item">
+                                        <i class="left chevron icon"></i>
+                                    </a>
+                                    <a onclick="page(this)" th:each="p : ${comments.navigatepageNums}"
+                                       th:href="@{/admin/comment/(pageNum=${p})}"
+                                       th:text="${p}" class="item"
+                                       th:classappend="${comments.pageNum}==${p}? 'active'">1</a>
+
+                                    <a onclick="page(this)"
+                                       th:href="@{/admin/comment/(pageNum=${comments.pageNum}+1)}"
+                                       th:unless="${comments.isLastPage}" class="icon item">
+                                        <i class="right chevron icon"></i>
+                                    </a>
+                                </div>
+
+
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+
+
+                <div class="ui success message" th:unless="${#strings.isEmpty(msg)}">
+                    <i class="close icon"></i>
+                    <div class="header">提示：</div>
+                    <p th:text="${msg}">操作成功！</p>
+                </div>
+                <div class="ui error message" th:unless="${#strings.isEmpty(errormsg)}">
+                    <i class="close icon"></i>
+                    <div class="header">提示：</div>
+                    <p th:text="${errormsg}">操作失败！</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+
+<!-- 页面jQuery.js的引用位置问题,如果导入了其它与jquery有关的js文件,那么jquery.js须在其它js的前面 -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script th:src="@{/js/semantic.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+
+<script>
+    $("#menu-btn").click(function () {
+        $(".menu-item").toggleClass("mobile-hide")
+    });
+
+    //下拉菜单
+    $('#dropdownmenu').dropdown({
+        on: 'hover'
+    });
+
+
+    //消息关闭
+    $('.message .close')
+        .on('click', function () {
+            $(this).closest('.message').transition('fade');
+        });
+
+
+    // showing multiple
+    $('.visible.example .ui.sidebar')
+        .sidebar({
+            context: '.visible.example .bottom.segment'
+        })
+        .sidebar('hide')
+    ;
+
+</script>
+</body>
+</html>

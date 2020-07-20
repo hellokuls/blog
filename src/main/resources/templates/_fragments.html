@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta content="320" name="MobileOptimized">
+    <title th:replace="${title}">文章页面</title>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/lib/prism/prism.css}">
+    <link rel="stylesheet" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/lib/lunbo/css/style.css}">
+</head>
+
+<body>
+<nav th:fragment="nav(n)" class="ui inverted attached segment padded-tb-mini shadow-small animated slow fadeInDown">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <a th:href="@{/}"><h2 class="ui white header item">Kuls's Blog</h2></a>
+            <a th:href="@{/blog}" class="menu-item mobile-hide item" th:classappend="${n==1} ? 'active'"><i
+                    class="home icon"></i>首页</a>
+            <a th:href="@{/category}" class="menu-item mobile-hide item" th:classappend="${n==2} ? 'active'"><i
+                    class="idea icon "></i>分类</a>
+            <a th:href="@{/about}" class="menu-item mobile-hide item" th:classappend="${n==4} ? 'active'"><i
+                    class="address card icon"></i>关于我</a>
+
+            <div class="menu-item mobile-hide right item">
+
+                <form name="search" th:action="@{/search}" target="_blank" method="get">
+                    <div class="ui search">
+                        <div class="ui inverted icon input">
+                            <input class="prompt" name="keyword" th:value="${keyword}" type="text" placeholder="搜索...">
+                            <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <a id="menu-btn" href="#" class="ui menu black icon button top-right mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+<footer th:fragment="footer">
+    <div class="ui inverted vertical segment padded-tb-big">
+        <div class="ui  center aligned container ">
+            <div class="ui inverted divided stackable grid">
+
+
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img th:src="@{/images/erweima.jpg}" alt="123" class="ui rounded image"
+                                 style="width: 110px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="three wide column">
+                    <h4 class="ui inverted header ">友情链接</h4>
+                    <div class="ui inverted link list">
+                        <a target="_blank" th:each="link : ${links}" th:href="@{${link.url}}" th:text="${link.name}"
+                           class="item">友情链接1</a>
+
+                    </div>
+                </div>
+
+                <div class="three wide column">
+                    <h4 class="ui inverted header">联系站长</h4>
+                    <div class="ui inverted link list">
+                        <span type="text" class="item"><i class="qq icon"></i>1839938674</span>
+                        <span class="item"><i class="wechat icon"></i> LLLLLLS123</span>
+                        <span class="item">公众号：Python进击者</span>
+                    </div>
+                </div>
+
+                <div class="seven wide column">
+                    <h4 class="ui inverted header">关于本站</h4>
+                    <p class="font-spaced font-thin text-lined">主要分享我的技术经验，所思所想。</p>
+                </div>
+            </div>
+
+            <div class="ui inverted section divider"></div>
+            <p class="font-thin font-spaced">版权 © 2020 Power By Kuls</p>
+            <p class="font-thin font-spaced">浙ICP备20023447号-1</p>
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kuls.mapper.TagMapper">
+
+    <insert id="save" parameterType="Tag">
+    insert into t_tag(name) values (#{name});
+</insert>
+
+    <select id="getTag" parameterType="long" resultType="Tag">
+    select id,name from t_tag where id=#{id};
+</select>
+
+    <select id="listTag" resultType="Tag">
+    select id,name from t_tag
+</select>
+
+
+    <select id="listTag1" parameterType="list" resultType="Tag">
+        select id,name from t_tag
+        <where>
+            <foreach collection="ids" index="index" item="id" separator="or" open="(" close=")">
+                id=#{id}
+            </foreach>
+        </where>
+    </select>
+
+
+    <select id="getTagByName" parameterType="String" resultType="Tag">
+        select id,name from t_tag where name = #{name};
+    </select>
+
+    <update id="updateTag" parameterType="Tag">
+        update t_tag set name = #{name} where id=#{id};
+    </update>
+
+    <delete id="deleteTag" parameterType="Long">
+        delete from t_tag where id = #{id};
+    </delete>
+</mapper>

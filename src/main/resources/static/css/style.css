@@ -1,0 +1,547 @@
+
+body {
+    background: url("../images/back.png");
+}
+
+a {
+    cursor: pointer !important;
+}
+
+footer {
+    height: 200px !important;
+    width: 100% !important;
+    position: relative !important;
+    bottom: 0 !important;
+}
+
+
+/*
+不换行
+*/
+
+.no-huanhang {
+    white-space: nowrap;
+}
+
+/*内部间距*/
+.padded-tb-mini {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+
+.padded-tb-tag {
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+}
+
+.padded-nomal {
+    padding: 1em !important;
+}
+
+.padded-mini2 {
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+}
+
+.padded-mini {
+    padding: 0.2em !important;
+}
+
+
+.padded-tb-large {
+    padding-top: 1.5em !important;
+    padding-bottom: 1.5em !important;
+}
+
+
+.padded-tb-big {
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
+}
+
+.padded-tb-bigest {
+    padding-top: 6em !important;
+    padding-bottom: 6em !important;
+}
+
+.padded-tb-about {
+    padding-top: 6em !important;
+    padding-bottom: 6em !important;
+}
+
+.padded-lr-big {
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+}
+
+.padded-lr-larger {
+    padding-left: 4em !important;
+    padding-right: 4em !important;
+}
+
+.padded-lr-bigest {
+    padding-left: 7em !important;
+    padding-right: 8em !important;
+}
+
+.padded-lr-larger-responsive {
+    padding-left: 4em !important;
+    padding-right: 4em !important;
+}
+
+.my-container {
+    position: relative !important;
+    padding-bottom: 200px !important;
+    max-width: 90em !important;
+    margin: auto !important;
+}
+
+.my-blog-container {
+    max-width: 62em !important;
+    margin: auto !important;
+}
+
+/*后台iframe部分的大小*/
+.admin-content-container {
+
+    max-width: 100% !important;
+    margin: auto !important;
+    max-height: 100% !important;
+
+
+}
+
+.admin-blog-container {
+    max-width: 80em !important;
+    margin: auto !important;
+}
+
+.logo-img {
+    width: 100px !important;
+    height: auto;
+}
+
+/*tag标签*/
+.m-tags {
+    margin: 0.6em !important;
+
+}
+
+/*外部间距*/
+.margin-tb-min {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+}
+
+.margin-tb-small {
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+}
+
+.margin-lf-min {
+    margin-left: 0.5em !important;
+    margin-right: 0.5em !important;
+}
+
+.margin-bottom-small {
+    margin-bottom: 0.5em !important;
+}
+
+/*字体相关设置*/
+.m-text-comment {
+    font-weight: 500 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.5 !important;
+    color: #708090 !important;
+}
+
+.m-text-sidebar {
+
+    font-size: 15px;
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.5 !important;
+}
+
+.m-text {
+    font-weight: 300 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.8;
+}
+
+.m-text-tabs {
+    font-weight: 500 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.m-text-thick {
+    font-weight: 600 !important;
+    letter-spacing: 3px !important;
+    line-height: 1.8;
+    font-size: 30px;
+}
+
+.text-mini {
+    font-size: 8px;
+    line-height: 1.8;
+}
+
+.text-big {
+    font-size: 24px;
+    line-height: 1.8;
+}
+
+.text-black {
+    color: black;
+    font-size: 20px !important;
+    font-weight: 200 !important;
+    line-height: 24px !important;
+    word-wrap: break-word !important;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-darkred {
+    color: darkred;
+}
+
+.text-black:hover {
+    color: teal;
+    text-decoration: underline;
+}
+
+.font-thin {
+    font-weight: 200 !important;
+}
+
+.font-spaced {
+    letter-spacing: 1px !important;
+}
+
+.text-lined {
+    line-height: 1.8;
+}
+
+/*位置*/
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 5px;
+}
+
+/*显示*/
+.mobile-show {
+    display: none !important;
+}
+
+/* 位置 */
+.m-fixed {
+    position: fixed !important;
+    z-index: 10 !important;
+}
+
+.m-bottom-right-middle {
+    bottom: 50% !important;
+    right: 0 !important;
+}
+
+/*阴影*/
+
+.shadow-small {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*首页栏和侧边栏*/
+.square {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background: #000;
+    vertical-align: middle;
+}
+
+.main-title {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 22px;
+    font-weight: 300 !important;
+    padding: 0 10px;
+    color: #000;
+}
+
+.vertical-line {
+    display: inline-block;
+    height: 20px;
+    width: 1px;
+    background-color: #333;
+    vertical-align: middle;
+}
+
+.sub-title {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    padding-left: 10px;
+    color: #333;
+}
+
+/*摘要*/
+.description {
+    background: #eee;
+    padding: 20px;
+    margin-top: 15px;
+    line-height: 28px;
+}
+
+
+/*首页热门文章*/
+.hot-blog {
+    padding: 5px 20px 15px;
+
+}
+
+.hot-blog-title {
+    color: black;
+    text-align: left;
+    font-size: 16px;
+    line-height: 23px;
+    margin-bottom: 5px;
+}
+
+.hot-blog-title:hover {
+    color: teal;
+    text-decoration: underline;
+}
+
+.hot-blog-info {
+    margin: 5px 0 0;
+}
+
+.hot-blog-time {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 100;
+    color: #888;
+}
+
+.hot-blog-view {
+    float: right;
+    right: 0;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 100;
+    color: #888;
+}
+
+.hot-blog-desc {
+    text-align: justify;
+    color: #888;
+    font-size: 13px;
+    line-height: 20px;
+    margin: 5px 0 0;
+}
+
+
+/*分类框*/
+
+.text-grey {
+    display: inline-block;
+    border-radius: 4px;
+    color: #777;
+    font-weight: 300;
+    font-size: 15px;
+    padding: 8px;
+    margin-right: 5px;
+}
+
+.text-grey.active {
+    color: #fff;
+    background: #555;
+}
+
+.text-fenlei {
+    color: black;
+    font-size: 17px;
+    font-weight: 700;
+    width: 60px;
+    display: inline-block;
+}
+
+/*后台管理侧边栏*/
+.text-sidebar {
+
+}
+
+.text-sidebar.active {
+    color: #fff;
+    background: teal !important;
+}
+
+/*后台管理tabs*/
+.content-tabs {
+    position: relative;
+    height: 39px;
+    background: #fafafa;
+    line-height: 38px;
+}
+
+.menuTab {
+    color: #999;
+    -webkit-transition: all .3s ease-out 0s;
+    transition: all .3s ease-out 0s;
+}
+
+.menuTab.label.active {
+    color: #337ab7;
+
+}
+
+.content-tabs .roll-nav, .page-tabs-list {
+    position: absolute;
+    width: 30px;
+    height: 38px;
+    text-align: center;
+    color: #999;
+    z-index: 2;
+    top: 0;
+}
+
+.content-tabs .roll-left {
+    left: 0;
+    border-right: solid 1px #eee;
+}
+
+.content-tabs .roll-right {
+    right: 0;
+    border-left: solid 0.5px #eee;
+}
+
+.content-tabs button {
+    background: #fff;
+    border: 0;
+    height: 40px;
+    width: 40px;
+    outline: none;
+}
+
+.content-tabs button:hover {
+    background: #fafafa;
+}
+
+.page-tabs {
+    margin-left: 30px;
+    width: 100000px;
+    height: 35px;
+    overflow: hidden;
+    padding: 7px;
+}
+
+.page-tabs .page-tabs-content {
+    float: left;
+}
+
+.page-tabs a {
+    display: block;
+    float: left;
+    border-right: solid 1px #eee;
+    padding: 0 1px;
+}
+
+.page-tabs a i:hover {
+    color: #c00;
+}
+
+.page-tabs a:hover, .content-tabs .roll-nav:hover {
+    color: #777;
+    background: #f2f2f2;
+    cursor: pointer;
+}
+
+.roll-right.tabRight {
+    right: 60px;
+}
+
+.roll-right.btn-group {
+    right: 60px;
+    width: 80px;
+    padding: 0;
+}
+
+.roll-right.btn-group button {
+    width: 80px;
+}
+
+.roll-right.tabReload {
+    background: #fff;
+    height: 38px;
+    width: 60px;
+    outline: none;
+}
+
+.dropdown-menu-right {
+    left: auto;
+}
+
+#content-main {
+    height: calc(100% - 127px);
+    overflow: hidden;
+}
+
+.fixed-nav #content-main {
+    height: calc(100% - 80px);
+    overflow: hidden;
+}
+
+
+@media screen and (max-width: 768px) {
+    /*可用于解决手机端能左右滑动的问题*/
+    body {
+        background: url("../images/back.png");
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    html {
+        overflow: hidden;
+    }
+
+    .mobile-hide {
+        display: none !important;
+    }
+
+    .mobile-show {
+        display: block !important;
+    }
+
+    .padded-lr-larger-responsive {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .mobile-wide {
+        width: 100% !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

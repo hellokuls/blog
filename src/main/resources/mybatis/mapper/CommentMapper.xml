@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kuls.mapper.CommentMapper">
+
+    <!--后台管理评论-->
+    <select id="listAdminComments" resultMap="indexComments">
+        select * from t_comment  order by create_time DESC
+    </select>
+
+
+    <!--显示在首页的最新评论-->
+    <select id="listAllComments" resultMap="indexComments">
+        select * from t_comment  order by create_time DESC limit 0,10
+    </select>
+
+
+    <select id="getBlog" resultType="Blog">
+        select id,title from t_blog where id = #{blog_id}
+    </select>
+
+    <resultMap id="indexComments" type="Comment">
+        <id column="id" property="id"/>
+        <result column="nickname" property="nickname"/>
+        <result column="email" property="email"/>
+        <result column="content" property="content"/>
+        <result column="avatar" property="avatar"/>
+        <result column="create_time" property="createTime"/>
+        <result column="admin_comment" property="adminComment"/>
+        <association property="blog" column="blog_id" javaType="Blog" select="getBlog">
+            <result column="title" property="title"/>
+        </association>
+
+    </resultMap>
+
+
+    <select id="listComments" parameterType="long" resultMap="replyComments">
+        select * from t_comment where blog_id = #{blogId} and parent_comment_id is null order by create_time DESC
+    </select>
+
+
+    <resultMap id="replyComments" type="Comment">
+        <id column="id" property="id"/>
+        <result column="nickname" property="nickname"/>
+        <result column="email" property="email"/>
+        <result column="content" property="content"/>
+        <result column="avatar" property="avatar"/>
+        <result column="create_time" property="createTime"/>
+        <result column="admin_comment" property="adminComment"/>
+        <association property="blog" column="blog_id" javaType="Blog" select="getBlog">
+
+        </association>
+        <association property="parentComment" column="parent_comment_id" javaType="Comment" select="getParent">
+
+        </association>
+        <collection property="replyComments" javaType="ArrayList" ofType="Comment" select="getreplyComments"
+                    column="id">
+            <association property="parentComment" column="parent_comment_id" javaType="Comment" select="getParent">
+
+            </association>
+        </collection>
+
+    </resultMap>
+
+    <select id="getreplyComments" resultMap="replyComments">
+        select * from t_comment where parent_comment_id = #{id};
+    </select>
+
+
+    <select id="getParent" resultType="Comment">
+        select * from t_comment where id = #{parent_comment_id}
+    </select>
+
+
+    <select id="getCommentByParentId" parameterType="long" resultType="Comment">
+        select * from t_comment where id = #{parentId}
+    </select>
+
+
+    <insert id="saveComments" parameterType="Comment" useGeneratedKeys="true" keyProperty="id">
+        insert into t_comment(id,nickname,email,admin_comment,content,avatar,create_time,blog_id,parent_comment_id)
+        values (#{id},#{nickname},#{email},#{adminComment},#{content},#{avatar},#{createTime},#{blog.id},#{parentComment.id})
+    </insert>
+
+
+    <delete id="deleteComments" parameterType="long">
+        delete from t_comment where id = #{id}
+    </delete>
+</mapper>

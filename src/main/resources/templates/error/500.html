@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>500</title>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+<body class="error404">
+<div class="ui container" style="padding-top:5%">
+    <div class="ui grid center aligned">
+        <div class="row">
+            <div class="sixteen wide tablet ten wide computer column">
+
+                <div class="ui container center aligned errorcontainer">
+                    <h1 class="ui header inverted">
+                        对不起，服务器出现了一点点小错误~ 等我马上修好~
+                    </h1>
+                    <a class="ui button" th:href="@{/}">
+                        返回主界面
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

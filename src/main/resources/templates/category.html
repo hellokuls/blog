@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>分类-不完美的Coder</title>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<!--头部-->
+<nav th:replace="_fragments :: nav(2)" class="ui inverted attached segment padded-tb-mini shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui white header item">kuls</h2>
+            <a href="#" class="menu-item mobile-hide item"><i class="home icon"></i>首页</a>
+            <a href="#" class="menu-item mobile-hide item"><i class="idea icon "></i>python</a>
+            <a href="#" class="menu-item mobile-hide item"><i class="coffee icon"></i>Java</a>
+            <a href="#" class="menu-item mobile-hide item"><i class="address card icon"></i>关于我</a>
+            <div class="menu-item mobile-hide right item">
+                <div class="ui search">
+                    <div class="ui inverted icon input">
+                        <input class="prompt" type="text" placeholder="搜索...">
+                        <i class="search link icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a id="menu-btn" href="#" class="ui menu black icon button top-right mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<!--中间-->
+<div class="my-container padded-tb-big">
+    <div class="ui container">
+
+        <div class="ui stackable grid">
+
+            <!--左边 -->
+            <div class="eleven wide column animated slow fadeInLeft">
+
+                <div id="blog-content" class="blog-content" th:fragment="blogList">
+
+                    <div class="ui segment">
+                        <span class="text-fenlei">分类：</span>
+                        <!--这里需要多注意-->
+                        <a id="type-a" th:each="type : ${types}" th:onclick="|javascript : changeType('${type.id}',1)|"
+                           th:attr="data-typeid=${type.id}" th:text="${type.name}" class="text-grey"
+                           th:classappend="${typeid} == ${type.id} ? 'active'">python</a>
+
+                    </div>
+
+
+                    <div class="ui segment" th:each="blog : ${blogs.list}">
+                        <div class="ui padded segment vertical padded-tb-large">
+                            <div class="ui middle aligned stackable grid padded-lr-big">
+
+                                <div class="five wide column">
+                                    <a th:href="@{/blog/{id}(id=${blog.id})}"><img th:src="@{${blog.firstPicture}}"
+                                                                                   alt="123"
+                                                                                   class="ui rounded image center aligned"></a>
+                                </div>
+
+                                <div class="eleven wide column">
+                                    <h3 class="ui header"><a th:href="@{/blog/{id}(id=${blog.id})}" class="text-black"
+                                                             th:text="${blog.title}">我是一个标题</a></h3>
+                                    <p class="m-text" th:text="${#strings.abbreviate(blog.description,70)}">
+                                        瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比瞎比比...
+                                    </p>
+                                    <br>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <i class="calendar icon"></i><span
+                                                        th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-01-01</span>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i> <span th:text="${blog.view}">100000</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank" id="tag"
+                                               class="ui mini tag padded-tb-tag m-text label no-huanhang"
+                                               th:text="${blog.type.name}">python</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui mini right floated pagination menu" th:unless="${blogs.pages}==1">
+                        <a th:onclick="|javascript : changeType('${typeid}',${blogs.pageNum}-1)|"
+                           th:unless="${blogs.isFirstPage}" class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                        <a th:each="p : ${blogs.navigatepageNums}" th:text="${p}"
+                           class="item" th:attr="data-page=${p}" th:classappend="${blogs.pageNum}==${p}? 'active'"
+                           th:onclick="|javascript : changeType('${typeid}',${p})|">1</a>
+
+                        <a th:onclick="|javascript : changeType('${typeid}',${blogs.pageNum}+1)|"
+                           th:unless="${blogs.isLastPage}" class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- 右边 -->
+            <div class="five wide column animated slow fadeInRight">
+
+                <!--热门文章-->
+                <div class="ui segments">
+                    <div class="ui segment">
+                        <div class="ui one column grid">
+                            <div class="column">
+                                <i class="thumbs up icon"></i>热门文章
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="hot-blog">
+                            <div th:each="hotblog : ${hotBlogs}">
+                                <p><i class="hotjar red icon"></i><a target="_blank" class="hot-blog-title"
+                                                                     th:href="@{/blog/{id}(id=${hotblog.id})}"
+                                                                     th:text="${hotblog.title}"></a></p>
+                                <p class="hot-blog-desc" th:text="${#strings.abbreviate(hotblog.description,40)}"></p>
+                                <p class="hot-blog-info">
+                                    <span class="hot-blog-time">2019-03-08</span>
+                                    <span class="hot-blog-view"> <i class="eye icon"></i><span style="margin-left: 3px"
+                                                                                               th:text="${hotblog.view}">100000</span></span>
+                                </p>
+
+                                <div class="ui divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--底部-->
+<footer th:replace="_fragments :: footer" class="ui inverted vertical segment padded-tb-big">
+    <div class="ui center aligned container ">
+        <div class="ui inverted divided stackable grid">
+
+
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img th:src="@{/images/erweima.jpg}" alt="123" class="ui rounded image"
+                             style="width: 110px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="three wide column">
+                <h4 class="ui inverted header ">友情链接1</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">友情链接1</a>
+                    <a href="#" class="item">友情链接2</a>
+                    <a href="#" class="item">友情链接3</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header">联系站长</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">友情链接1</a>
+                    <a href="#" class="item">友情链接2</a>
+                    <a href="#" class="item">友情链接3</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header">关于本站</h4>
+                <p class="font-spaced font-thin text-lined">1231231231231231231231233123123</p>
+            </div>
+
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="font-thin font-spaced">版权</p>
+    </div>
+
+
+</footer>
+
+<!-- 页面jQuery.js的引用位置问题,如果导入了其它与jquery有关的js文件,那么jquery.js须在其它js的前面 -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script th:src="@{/js/semantic.min.js}"></script>
+<script th:src="@{/js/tags.js}"></script>
+
+<script th:inline="javascript">
+    $("#menu-btn").click(function () {
+        $(".menu-item").toggleClass("mobile-hide")
+    });
+
+
+    function changeType(typeid, p) {
+
+        $(this).addClass("active").siblings("a").removeClass("active");
+        var url = "/category/" + typeid + "?pageNum=" + p;
+        console.log(url)
+        $("#blog-content").load(url);
+
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="https://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:replace="${title}">文章页面</title>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/lib/prism/prism.css}">
+    <link rel="stylesheet" th:href="@{/lib/tocbot/tocbot.css}">
+    <link th:href="@{/lib/editormd/css/editormd.min.css}" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/ionicons/3.0.0-alpha.3/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<!--头部-->
+<div th:fragment="sidebar" class="ui sidebar vertical left menu overlay borderless visible
+ inverted" style="-webkit-transition-duration: 0.1s; transition-duration: 0.1s;" data-color="grey" id="sidebar">
+    <div class="logo">
+        <h1 class="ui white header item">Kuls's Blog</h1>
+    </div>
+    <div class="ui accordion inverted" id="menuList">
+        <div class="ui divider"></div>
+
+
+        <div class="item m-text-sidebar">后台管理</div>
+        <a class="item text-sidebar active" th:href="@{/admin/main}">
+            <i class="titleIcon th icon"></i> <span class="colhidden">管理首页</span>
+        </a>
+
+        <div class="ui divider"></div>
+
+        <div class="item m-text-sidebar">博客管理</div>
+        <a class="item text-sidebar" th:href="@{/admin/blogs/input}">
+            <i class="edit titleIcon icon"></i> <span class="colhidden">发布博客</span>
+        </a>
+        <a class="item text-sidebar" th:href="@{/admin/blogs}">
+            <i class=" titleIcon book icon"></i> <span class="colhidden">管理博客</span>
+        </a>
+
+        <a class="item text-sidebar" th:href="@{/admin/types}">
+            <i class="clipboard list titleIcon icon"></i> <span class="colhidden">分类列表</span>
+        </a>
+
+
+        <a class="item text-sidebar" th:href="@{/admin/tags}">
+            <i class="tags titleIcon icon"></i> <span class="colhidden">标签列表</span>
+        </a>
+
+
+        <a class="item text-sidebar" th:href="@{/admin/comment}">
+            <i class="comments titleIcon icon"></i><span class="colhidden">评论列表</span>
+        </a>
+
+
+        <a class="item text-sidebar" th:href="@{/admin/links}">
+            <i class="linkify titleIcon icon"></i> <span class="colhidden">友链列表</span>
+        </a>
+
+        <div class="ui divider"></div>
+        <div class="item m-text-sidebar">系统管理</div>
+
+        <a class="item text-sidebar" th:href="@{/admin/links}">
+            <i class="linkify titleIcon icon"></i> <span class="colhidden">网站设置</span>
+        </a>
+
+    </div>
+
+</div>
+
+<!--nav-->
+<div class="navslide navwrap" th:fragment="nav" style="overflow-y: auto !important; overflow-x: hidden" id="nav">
+
+    <div class="ui menu icon borderless grid" data-color="inverted white" style="margin-bottom: 0">
+
+        <div class="item ui colhidden">
+            <div class="ui icon input">
+                <input type="text" placeholder="Search...">
+                <i class="search icon"></i>
+            </div>
+        </div>
+        <div class="right menu colhidden">
+
+            <div id="dropdownmenu" class="ui dropdown item">
+                <div class="text">
+                    <img class="ui avatar image" th:src="@{${session.user.avatar}}">
+                    <span th:text="${session.user.nickname}">kuls666</span>
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a th:href="@{/admin/logout}" class="item">注销</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row content-tabs" id="nav-tab">
+        <button class="roll-nav roll-left tabLeft">
+            <i class="fa fa-backward"></i>
+        </button>
+        <nav class="page-tabs menuTabs">
+            <div class="page-tabs-content">
+                <a href="javascript:;" class="ui active menuTab m-text-tabs label" data-id="/admin/main">首页</a>
+            </div>
+        </nav>
+        <button class="roll-nav roll-right tabRight">
+            <i class="fa fa-forward"></i>
+        </button>
+        <a href="javascript:void(0);" class="roll-nav roll-right tabReload"><i class="fa fa-refresh"></i> 刷新</a>
+    </div>
+
+
+</div>
+
+</body>
+
+
+</html>

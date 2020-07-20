@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- Site Properities -->
+    <meta name="generator" content="Visual Studio 2015"/>
+    <title>你找的页面没看到...</title>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+<body class="error404">
+<div class="ui container" style="padding-top:5%">
+    <div class="ui grid center aligned">
+        <div class="row">
+            <div class="sixteen wide tablet ten wide computer column">
+
+                <div class="ui container center aligned errorcontainer">
+                    <h1 class="ui header inverted">
+                        Oooops! Sorry The Page Not Found :(
+                    </h1>
+                    <a class="ui button" th:href="@{/}">
+                        返回主界面
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>关于我-不完美的Coder</title>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!--头部-->
+<nav th:replace="_fragments :: nav(4)" class="ui inverted attached segment padded-tb-mini shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui white header item">kuls</h2>
+            <a href="#" class="menu-item mobile-hide item"><i class="home icon"></i>首页</a>
+            <a href="#" class="menu-item mobile-hide item"><i class="idea icon "></i>python</a>
+            <a href="#" class="menu-item mobile-hide item"><i class="coffee icon"></i>Java</a>
+            <a href="#" class="menu-item mobile-hide item"><i class="address card icon"></i>关于我</a>
+            <div class="menu-item mobile-hide right item">
+                <div class="ui search">
+                    <div class="ui inverted icon input">
+                        <input class="prompt" type="text" placeholder="搜索...">
+                        <i class="search link icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a id="menu-btn" href="#" class="ui menu black icon button top-right mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!--主体-->
+<div class="my-container padded-tb-big animated slow fadeIn">
+    <div class="ui container">
+        <div class="ui padded-tb-big padded-lr-big segment">
+
+            <div>
+                <span class="square"></span>
+                <span class="main-title">关于我</span>
+                <span class="vertical-line"></span>
+                <span class="sub-title">About Me</span>
+            </div>
+            <br>
+            <br>
+
+            <div class="ui stackable grid">
+
+
+                <div class="eleven wide column">
+                    <div class="ui center aligned stackable grid">
+                        <span class="m-text">
+                            <br><br>
+                            1. 我是谁？
+
+                            <br>大三学生，高一的时候因为对黑客、刷钻等技术感到好奇，从而接触到了计算机并且热爱上了计算机。你可以叫我Kuls，同时我也是Python进击者、爽哥玩编程的号主 <br><br>
+                            2. 为什么要做一个博客？
+
+                            <br>首先，博客给我的感觉并没有像其他平台那么限制，非常的自由。除此之外，我写了个博客系统给自己用用，看看自己写的产品，体验怎么样。<br><br>
+
+                            3. 觉得自己最有成就的事
+                            <br>最有成就的应该是自己做出了一个1W+粉丝的公众号<br><br>
+
+                            4. 这个博客会记录什么？
+                            <br>主要记录我在编码中遇到的问题和解决方法以及一些自己原创的教程，另外还有自己的想法和总结。<br><br>
+
+                            5. 这个博客系统会开源吗？还会继续完善吗？
+                            <br>其实我认为每个学习后端的朋友都应该自己写一套博客系统，提升的不是技术而是对于整个项目的流程的把控。这个博客必定会开源，但是需要我的进一步完善才好放出来。这个博客系统我会一直完善下去的<br><br>
+
+                            6. 怎么样联系到你？
+                            <br>我的微信：LLLLLLS123<br>
+                            你也可以去我的公众号---Python进击者 来找我 <br><br>
+
+                        </span>
+
+                        </span>
+                    </div>
+
+
+                </div>
+
+
+                <div class="five wide column">
+
+                    <div class="ui segment basic">
+                        <div class="ui card">
+                            <div class="image">
+                                <img th:src="@{/images/my.jpeg}">
+                            </div>
+                            <div class="content">
+                                <a class="header">Kuls</a>
+                                <br>
+                                <div class="meta">
+                                    <span class="date">技术栈：</span>
+                                    <span class="date">Java全栈、Python爬虫、Python后端</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui center aligned  segment basic">
+                        <div class="ui link list">
+                            <div class="item">
+                                <img th:src="@{/images/erweima.jpg}" alt="123" class="ui rounded image"
+                                     style="width: 240px;">
+                            </div>
+                            <div class="item">欢迎关注我的公众号</div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+</div>
+
+
+</body>
+<!--底部-->
+<footer th:replace="_fragments :: footer" class="ui inverted vertical segment padded-tb-big">
+    <div class="ui center aligned container ">
+        <div class="ui inverted divided stackable grid">
+
+
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img th:src="@{/images/erweima.jpg}" alt="123" class="ui rounded image"
+                             style="width: 110px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="three wide column">
+                <h4 class="ui inverted header ">友情链接</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">友情链接1</a>
+                    <a href="#" class="item">友情链接2</a>
+                    <a href="#" class="item">友情链接3</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header">联系站长</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">友情链接1</a>
+                    <a href="#" class="item">友情链接2</a>
+                    <a href="#" class="item">友情链接3</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header">关于本站</h4>
+                <p class="font-spaced font-thin text-lined">1231231231231231231231233123123</p>
+            </div>
+
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="font-thin font-spaced">版权</p>
+    </div>
+
+
+</footer>
+<!-- 页面jQuery.js的引用位置问题,如果导入了其它与jquery有关的js文件,那么jquery.js须在其它js的前面 -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/lib/layui/layui.js}"></script>
+
+<script>
+    $("#menu-btn").click(function () {
+        $(".menu-item").toggleClass("mobile-hide")
+    });
+
+</script>
+
+
+</html>
