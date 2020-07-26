@@ -1,5 +1,5 @@
-# springblog--适合新手的第一个springboot项目
-springboot+thymeleaf+mybatis 个人简约博客| springboot学习项目
+# 适合新手的第一个springboot项目
+springboot+thymeleaf+mybatis 个人简约博客
 
 
 > 本博客为第一版本，后续会持续更新！如果你觉得还不错，可以点个star！
