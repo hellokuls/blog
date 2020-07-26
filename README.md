@@ -6,21 +6,21 @@ springboot+thymeleaf+mybatis 个人简约博客| springboot学习项目
 
 ## 网站截图
 
-![](https://github.com/hellokuls/springblog/blob/master/imgs/11.png)
-
-![](https://github.com/hellokuls/springblog/blob/master/imgs/22.png)
-
-![](https://github.com/hellokuls/springblog/blob/master/imgs/33.png)
-
-![](https://github.com/hellokuls/springblog/blob/master/imgs/44.png)
-
-![](https://github.com/hellokuls/springblog/blob/master/imgs/55.png)
-
 ![](https://github.com/hellokuls/springblog/blob/master/imgs/1.png)
 
 ![](https://github.com/hellokuls/springblog/blob/master/imgs/2.png)
 
 ![](https://github.com/hellokuls/springblog/blob/master/imgs/3.png)
+
+![](https://github.com/hellokuls/springblog/blob/master/imgs/4.png)
+
+![](https://github.com/hellokuls/springblog/blob/master/imgs/5.png)
+
+![](https://github.com/hellokuls/springblog/blob/master/imgs/6.png)
+
+![](https://github.com/hellokuls/springblog/blob/master/imgs/7.png)
+
+![](https://github.com/hellokuls/springblog/blob/master/imgs/8.png)
 
 ## 部署
 修改mysql、redis配置
