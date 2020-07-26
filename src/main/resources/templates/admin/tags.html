@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="zh" xmlns:th="https://www.thymeleaf.org">
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <title>标签管理</title>
-    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -79,7 +75,7 @@
 
 
 <!-- 页面jQuery.js的引用位置问题,如果导入了其它与jquery有关的js文件,那么jquery.js须在其它js的前面 -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/semantic.min.js}"></script>
 <script th:src="@{/js/main.js}"></script>
 

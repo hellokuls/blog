@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="zh" xmlns:th="https://www.thymeleaf.org">
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
     <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
@@ -10,13 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta content="320" name="MobileOptimized">
     <title th:replace="${title}">文章页面</title>
-    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link th:href="@{/css/semantic.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/typo.css}">
     <link rel="stylesheet" th:href="@{/css/animate.css}">
     <link rel="stylesheet" th:href="@{/lib/prism/prism.css}">
     <link rel="stylesheet" th:href="@{/lib/tocbot/tocbot.css}">
-    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
     <link rel="stylesheet" th:href="@{/lib/lunbo/css/style.css}">
 </head>
 
@@ -43,7 +42,6 @@
 
                     </div>
                 </form>
-
             </div>
         </div>
 

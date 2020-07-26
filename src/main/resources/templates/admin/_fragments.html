@@ -3,13 +3,14 @@
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
     <title th:replace="${title}">文章页面</title>
-    <link href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link th:href="@{/css/semantic.min.css}" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/typo.css}">
     <link rel="stylesheet" th:href="@{/css/animate.css}">
     <link rel="stylesheet" th:href="@{/lib/prism/prism.css}">
     <link rel="stylesheet" th:href="@{/lib/tocbot/tocbot.css}">
-    <link th:href="@{/lib/editormd/css/editormd.min.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/editormd/css/editormd.min.css}" >
     <link href="https://cdn.bootcdn.net/ajax/libs/ionicons/3.0.0-alpha.3/css/ionicons.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>

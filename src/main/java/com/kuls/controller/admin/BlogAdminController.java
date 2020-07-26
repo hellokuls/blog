@@ -40,11 +40,11 @@ public class BlogAdminController {
     private TagService tagService;
 
 
-    @GetMapping("/sys/blogs")
-    public String blogs() {
-
-        return "admin/blogs";
-    }
+//    @GetMapping("/blogs")
+//    public String blogs() {
+//
+//        return "admin/blogs";
+//    }
 
     /**
      * 后台显示博客列表
