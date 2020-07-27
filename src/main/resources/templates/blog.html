@@ -323,17 +323,14 @@
 <script th:src="@{/lib/prism/prism.js}"></script>
 <script th:src="@{/lib/tocbot/tocbot.min.js}"></script>
 <script th:src="@{/js/tags.js}"></script>
-<script th:src="@{/js/like.js}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!--  加入 th:inline="javascript" 可以在js中取值  -->
 <script th:inline="javascript">
 
 
     $("#like-btn").click(function () {
-
-        $(this).load(/*[[@{/clickLike/{id}(id=${blog.id})}]]*/"@{/clickLike/{id}(id=${blog.id})}");
+        $.ajax(/*[[@{/clickLike/{id}(id=${blog.id})}]]*/);
         $("#like-count").text(parseInt($('#like-count').text()) + 1);
-        console.log("您点击了喜欢按钮")
     });
 
 

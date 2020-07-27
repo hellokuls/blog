@@ -17,10 +17,12 @@ public class BlogLikeController {
     private RedisService redisService;
 
     @GetMapping("/clickLike/{id}")
+    @ResponseBody
     public String clickLike(@PathVariable long id) {
 
         redisService.incrementLikedCount(id);
-        return "redirect:blog/" + id;
+
+        return "success";
     }
 
 }
