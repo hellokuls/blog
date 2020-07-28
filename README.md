@@ -1,6 +1,6 @@
 ## springboot+thymeleaf+mybatis 个人简约博客
 
-> 本博客为第一版本，后续会持续更新！如果你觉得还不错，可以点个star！
+> 本博客为第一版本，后续会持续更新！如果你觉得还不错，可以点个star！也可以fork一下一起来玩！
 
 
 ## 网站截图
@@ -79,6 +79,18 @@ pagehelper:
 ```
 
 修改相关配置后，直接运行即可
+
+## 技术栈
+
+| 前端技术栈 | 后端技术栈 |
+| ---------- | ---------- |
+|      semantic-ui      |   springboot         |
+|     thymeleaf       |  mybatis          |
+|    后台页面部分参考若依        |  redis          |
+|      prism      |  druid          |
+|      editormd      |  quartz          |
+
+之后会整合shiro做权限
 
 ---
 若有问题请提issue
