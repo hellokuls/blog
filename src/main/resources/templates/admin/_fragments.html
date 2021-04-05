@@ -33,6 +33,7 @@
         <div class="ui divider"></div>
 
         <div class="item m-text-sidebar">博客管理</div>
+
         <a class="item text-sidebar" th:href="@{/admin/blogs/input}">
             <i class="edit titleIcon icon"></i> <span class="colhidden">发布博客</span>
         </a>
@@ -62,8 +63,12 @@
         <div class="ui divider"></div>
         <div class="item m-text-sidebar">系统管理</div>
 
-        <a class="item text-sidebar" th:href="@{/admin/links}">
+        <a class="item text-sidebar" th:href="@{/admin/os}">
             <i class="linkify titleIcon icon"></i> <span class="colhidden">网站设置</span>
+        </a>
+
+        <a class="item text-sidebar" th:href="@{/admin/links}">
+            <i class="linkify titleIcon icon"></i> <span class="colhidden">用户设置</span>
         </a>
 
     </div>

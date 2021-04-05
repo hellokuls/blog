@@ -136,18 +136,24 @@ public class BlogAdminController {
      */
     @PostMapping("/blogs/save")
     public String save(Blog blog, HttpSession session, RedirectAttributes attributes) {
+        User user = (User) session.getAttribute("user");
         // 获取当前用户
-        blog.setUser((User) session.getAttribute("user"));
-        blog.setType(typeService.getType(blog.getType().getId()));
-        blog.setTages(tagService.listTag(blog.getTagIds()));
-        int save = blogService.save(blog);
-        if (save > 0) {
-            attributes.addFlashAttribute("msg", "操作成功");
-        } else {
-            attributes.addFlashAttribute("errormsg", "操作失败");
+        if (user != null){
+            blog.setUser(user);
+            blog.setType(typeService.getType(blog.getType().getId()));
+            blog.setTages(tagService.listTag(blog.getTagIds()));
+            int save = blogService.save(blog);
+            if (save > 0) {
+                attributes.addFlashAttribute("msg", "操作成功");
+            } else {
+                attributes.addFlashAttribute("errormsg", "操作失败");
+            }
+            return "redirect:/admin/blogs";
+        }else {
+            return "redirect:/admin/index";
         }
 
-        return "redirect:/admin/blogs";
+
     }
 
     /**

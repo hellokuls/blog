@@ -36,22 +36,6 @@ $(window).resize(function () {
         }
     }
 });
-var isMobile = window.matchMedia("only screen and (max-width: 768px)");
-
-// if (isMobile.matches) {
-//     resizeSidebar("1");
-//     $("body")
-//         .getNiceScroll()
-//         .remove();
-//     $(".sidebar")
-//         .getNiceScroll()
-//         .remove();
-//
-//     $(".computer.only").toggleClass("displaynone");
-//     $(".colhidden").toggleClass("displaynone");
-// } else {
-//
-// }
 
 function resizeSidebar(op) {
 
@@ -142,6 +126,9 @@ var storage = {
     }
 };
 
+
+// history（表示去掉地址的#）否则地址以"#"形式展示
+var mode = "history";
 
 /**
  iframe相关
@@ -305,9 +292,9 @@ function iframe_height(_this) {
         mainWrapHeight = $(window).height() - window.document.getElementById("nav").offsetHeight,
         frame_height = frameObj.documentElement.scrollHeight;
     console.log(mainWrapHeight);
-    console.log(frame_height);
+    // console.log(frame_height);
 
-    _this.height(frame_height < 610 ? mainWrapHeight : frame_height);
+    _this.height(mainWrapHeight)
 }
 
 
@@ -316,6 +303,7 @@ $(".iframeMain").on("load", function () {//iframe加载完后 高度自适应。
     iframe_height($(this))
     // console.log("这里的url为："+$(this).data('id'))
 });
+
 
 
 $('#menuList').on('click', 'a', function (e) {

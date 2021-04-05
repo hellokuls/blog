@@ -36,7 +36,6 @@
 <script th:src="@{/js/main.js}"></script>
 <script>
 
-    var mode = "history";
 
     $("#menu-btn").click(function () {
         $(".menu-item").toggleClass("mobile-hide")
@@ -47,22 +46,18 @@
         on: 'hover'
     });
 
-    //类型选择    
+    //类型选择
     $('.ui.selection.dropdown')
         .dropdown({
             maxSelections: 3
-        })
-    ;
-
+        });
 
     // showing multiple
     $('.visible.example .ui.sidebar')
         .sidebar({
             context: '.visible.example .bottom.segment'
         })
-        .sidebar('hide')
-    ;
+        .sidebar('hide');
 
 </script>
-</body>
 </html>

@@ -71,7 +71,6 @@
             width: "100%",
             height: 640,
             syncScrolling: "single",
-//        path    : "../static/lib/editormd/lib/"
             path: "../static/lib/editormd/lib/"
         });
     });
@@ -86,13 +85,12 @@
         on: 'hover'
     });
 
-    //类型选择    
+    //类型选择
     $('.ui.selection.dropdown')
         .dropdown({
             maxSelections: 3
         })
     ;
-
 
     $('.ui.form').form({
         fields: {
@@ -100,7 +98,7 @@
                 identifier: 'name',
                 rules: [{
                     type: 'empty',
-                    prompt: '请输入类型名称'
+                    prompt: '请输入链接名称'
                 }]
             },
         }
