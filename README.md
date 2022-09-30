@@ -4,7 +4,6 @@
 
 
 ## 网站截图
-> 如果截图看不到，请访问 http://www.kuls6.top/blog/22
 >
 ![](https://github.com/hellokuls/blog/blob/master/imgs/1.png)
 
