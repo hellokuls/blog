@@ -19,7 +19,7 @@ public class QuartzConfig {
     @Bean
     public Trigger quartzTrigger() {
         SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
-                .withIntervalInMinutes(5)  //十分钟执行一次
+                .withIntervalInMinutes(5)  //五分钟执行一次
                 .repeatForever();
         return TriggerBuilder.newTrigger().forJob(quartzDetail())
                 .withIdentity(LIKE_TASK_IDENTITY)

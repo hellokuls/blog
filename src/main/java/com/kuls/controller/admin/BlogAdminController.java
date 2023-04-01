@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//springboot+mybaits+redis+mysql8
 /**
  * @author kuls
  * @Desc kuls
@@ -40,11 +41,6 @@ public class BlogAdminController {
     private TagService tagService;
 
 
-//    @GetMapping("/blogs")
-//    public String blogs() {
-//
-//        return "admin/blogs";
-//    }
 
     /**
      * 后台显示博客列表
@@ -67,7 +63,7 @@ public class BlogAdminController {
         PageInfo<Blog> blogPageInfo = new PageInfo<>(lists);
         model.addAttribute("blogs", blogPageInfo);
         model.addAttribute("types", typeService.listType());
-
+// mybatis plus
         return "admin/blogs";
     }
 
@@ -152,7 +148,6 @@ public class BlogAdminController {
         }else {
             return "redirect:/admin/index";
         }
-
 
     }
 

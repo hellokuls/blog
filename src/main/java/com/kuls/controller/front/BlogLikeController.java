@@ -21,8 +21,20 @@ public class BlogLikeController {
     public String clickLike(@PathVariable long id) {
 
         redisService.incrementLikedCount(id);
+        String result = "success";
 
-        return "success";
+        return result;
     }
+
+    @GetMapping("/clickUnLike/{id}")
+    @ResponseBody
+    public String clickUnLike(@PathVariable long id) {
+
+        redisService.decrementLikedCount(id);
+        String result = "success";
+
+        return result;
+    }
+
 
 }

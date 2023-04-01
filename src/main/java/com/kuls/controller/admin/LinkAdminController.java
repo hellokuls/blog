@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/admin")
-public class LinkAdminController {
+public class  LinkAdminController {
 
     @Autowired
     private LinkService linkService;

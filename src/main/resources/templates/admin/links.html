@@ -49,15 +49,15 @@
             <tr>
                 <th colspan="6">
                     <div class="ui mini right floated pagination menu" th:unless="${linkslist.pages}==1">
-                        <a th:href="@{/admin/tags/(pageNum=${page.pageNum}-1)}" th:unless="${linkslist.isFirstPage}"
+                        <a th:href="@{/admin/links/(pageNum=${page.pageNum}-1)}" th:unless="${linkslist.isFirstPage}"
                            class="icon item">
                             <i class="left chevron icon"></i>
                         </a>
                         <a th:each="p : ${linkslist.navigatepageNums}" th:text="${p}"
-                           th:href="@{/admin/tags/(pageNum=${p})}"
+                           th:href="@{/admin/links/(pageNum=${p})}"
                            class="item">1</a>
 
-                        <a th:href="@{/admin/tags/(pageNum=${page.pageNum}+1)}" th:unless="${linkslist.isLastPage}"
+                        <a th:href="@{/admin/links/(pageNum=${page.pageNum}+1)}" th:unless="${linkslist.isLastPage}"
                            class="icon item">
                             <i class="right chevron icon"></i>
                         </a>

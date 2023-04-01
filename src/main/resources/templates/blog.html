@@ -92,7 +92,7 @@
 
             <div id="like-content" class="ui segment center aligned basic">
                 <div id="like-btn" class="ui labeled button animated shake" tabindex="0">
-                    <div class="ui blue button">
+                    <div class="ui blue button" id="dianzantxt" value="0">
                         点赞
                     </div>
                     <a class="ui basic blue label" th:text="${blog.likes}" id="like-count">
@@ -329,8 +329,21 @@
 
 
     $("#like-btn").click(function () {
-        $.ajax(/*[[@{/clickLike/{id}(id=${blog.id})}]]*/);
-        $("#like-count").text(parseInt($('#like-count').text()) + 1);
+            //判断是否点赞按钮状态
+            let checked = $("#dianzantxt").attr("value");
+            //点赞按钮
+            if (checked == 0){
+                $.ajax(/*[[@{/clickLike/{id}(id=${blog.id})}]]*/);
+                $("#like-count").text(parseInt($('#like-count').text()) + 1);
+                $("#dianzantxt").text("取消");
+                $("#dianzantxt").attr("value",1);
+            }else { // 取消点赞按钮
+                $.ajax(/*[[@{/clickUnLike/{id}(id=${blog.id})}]]*/);
+                $("#like-count").text(parseInt($('#like-count').text()) - 1);
+                $("#dianzantxt").text("点赞");
+                $("#dianzantxt").attr("value",0);
+            }
+
     });
 
 

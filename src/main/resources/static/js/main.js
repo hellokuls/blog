@@ -67,7 +67,6 @@ function resizeSidebar(op) {
 
 }
 
-
 // using context
 $('.ui.right.sidebar')
     .sidebar({
@@ -77,31 +76,6 @@ $('.ui.right.sidebar')
     })
     .sidebar('attach events', '.rightsidebar');
 
-
-function toggleFullScreen(elem) {
-    // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-    if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
-        if (elem.requestFullScreen) {
-            elem.requestFullScreen();
-        } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullScreen) {
-            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-        } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-        }
-    } else {
-        if (document.cancelFullScreen) {
-            document.cancelFullScreen();
-        } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-        } else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
-        } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-        }
-    }
-}
 
 $(".ui.dropdown").dropdown({
     allowCategorySelection: true,
@@ -285,23 +259,13 @@ function menuItem(this_) {
  * @param _this
  */
 function iframe_height(_this) {
-    //长度
-    var iframe_len = document.getElementsByClassName("iframeMain").length;
-
-    var frameObj = document.getElementsByClassName("iframeMain")[iframe_len - 1].contentDocument || document.getElementsByClassName("iframeMain")[iframe_len - 1].contentWindow.document,
-        mainWrapHeight = $(window).height() - window.document.getElementById("nav").offsetHeight,
-        frame_height = frameObj.documentElement.scrollHeight;
-    console.log(mainWrapHeight);
-    // console.log(frame_height);
-
+    var mainWrapHeight = $(window).height() - window.document.getElementById("nav").offsetHeight;
     _this.height(mainWrapHeight)
 }
 
 
 $(".iframeMain").on("load", function () {//iframe加载完后 高度自适应。
-
-    iframe_height($(this))
-    // console.log("这里的url为："+$(this).data('id'))
+    iframe_height($(this));
 });
 
 

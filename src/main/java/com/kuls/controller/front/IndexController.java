@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.kuls.mapper.BlogTagMapper;
 import com.kuls.po.Blog;
 import com.kuls.po.Type;
+import com.kuls.po.User;
 import com.kuls.service.CommentService;
 import com.kuls.service.admin.BlogService;
 import com.kuls.service.admin.LinkService;
@@ -18,6 +19,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -26,7 +31,7 @@ import java.util.List;
  * @date 2020/5/3 10:02 上午
  */
 @Controller
-public class IndexController {
+public class  IndexController {
 
     @Autowired
     private BlogService blogService;
@@ -44,7 +49,7 @@ public class IndexController {
 
     @GetMapping({"/blog", "/"})
     public String blog(@RequestParam(defaultValue = "1") int pageNum,
-                       @RequestParam(defaultValue = "8") int pageSize,
+                       @RequestParam(defaultValue = "10") int pageSize,
                        BlogQuery blog,
                        Model model) {
 
@@ -59,10 +64,33 @@ public class IndexController {
         return "index";
     }
 
+    public  String getCookies(HttpServletRequest request){
+        //HttpServletRequest 装请求信息类
+        //HttpServletRespionse 装相应信息的类
+        //   Cookie cookie=new Cookie("sessionId","CookieTestInfo");
+        Cookie[] cookies =  request.getCookies();
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sessionId")){
+                    return cookie.getValue();
+                }
+            }
+        }
+
+        return  null;
+    }
+
+    public  String setCookies(HttpServletResponse response) {
+        //HttpServerletRequest 装请求信息类
+        //HttpServerletRespionse 装相应信息的类
+        Cookie cookie = new Cookie("sessionId", "CookieTestInfo");
+        response.addCookie(cookie);
+        return "添加cookies信息成功";
+    }
 
     @GetMapping("/category")
     public String toCategory(@RequestParam(defaultValue = "1") int pageNum,
-                             @RequestParam(defaultValue = "8") int pageSize,
+                             @RequestParam(defaultValue = "10") int pageSize,
                              BlogQuery blog,
                              Model model) {
         List<Type> types = typeService.listType();
@@ -84,7 +112,7 @@ public class IndexController {
 
     @GetMapping("/category/{id}")
     public String category(@RequestParam(defaultValue = "1") int pageNum,
-                           @RequestParam(defaultValue = "5") int pageSize,
+                           @RequestParam(defaultValue = "10") int pageSize,
                            @PathVariable long id,
                            Model model) {
         BlogQuery blog = new BlogQuery();
@@ -110,7 +138,7 @@ public class IndexController {
 
     @GetMapping("/search")
     public String search(@RequestParam(defaultValue = "1") int pageNum,
-                         @RequestParam(defaultValue = "5") int pageSize,
+                         @RequestParam(defaultValue = "10") int pageSize,
                          @RequestParam("keyword") String keyword,
                          Model model) {
         BlogQuery blogQuery = new BlogQuery();

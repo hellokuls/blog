@@ -8,7 +8,7 @@ a {
 }
 
 footer {
-    height: 200px !important;
+    height: 300px !important;
     width: 100% !important;
     position: relative !important;
     bottom: 0 !important;
@@ -187,6 +187,11 @@ footer {
 
 .text-mini {
     font-size: 8px;
+    line-height: 1.8;
+}
+
+.text-middle {
+    font-size: 11px;
     line-height: 1.8;
 }
 
