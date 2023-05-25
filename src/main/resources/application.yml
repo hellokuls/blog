@@ -4,7 +4,7 @@ spring:
   datasource:
     username: root
     password: liusHuang@123
-    url: jdbc:mysql://mysql-test1:3306/springblog?useSSL=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/springblog?useSSL=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     #Spring Boot 默认是不注入这些属性值的，需要自己绑定
@@ -29,7 +29,7 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
   redis:
-    host: redis-test
+    host: localhost
     port: 6379
     password:
     timeout: 5000
